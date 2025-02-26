@@ -1,49 +1,59 @@
 import React, { useState } from "react";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = ({ handleLogin }) => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
   const submitHandler = (e) => {
     e.preventDefault();
-
+    handleLogin(email, password);
     setEmail("");
     setPassword("");
   };
+
   return (
-    <div className="flex h-screen w-full items-center justify-center">
-      <div className="border-4 border-emerald-600 p-40 rounded-xl">
+    <div className="flex select-none h-screen w-full items-center justify-center">
+      <div className="flex items-center justify-center flex-col text-center md:w-2/4 top-[50%] left-[50%] absolute -translate-x-[50%] -translate-y-[50%]">
+        <h1 className="mb-20 text-4xl font-bold md:text-5xl">Log In</h1>
         <form
           onSubmit={(e) => {
             submitHandler(e);
           }}
-          className="flex flex-col items-center justify-center"
+          className="flex flex-col gap-7 w-3/4"
         >
-          <h2 className="text-3xl font-bold text-emerald-600">Login</h2>
-          <p className="text-sm text-gray-400 3">
-            Don't have an account?{" "}
-            <span className="text-emerald-600 underline">Sign Up</span>
-          </p>
           <input
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             required
-            className="outline-none text-center bg-transparent border-2 border-emerald-600 text-sm rounded-full placeholder:text-gray-400 py-3 px-10"
             type="email"
-            placeholder="Enter your email"
+            placeholder="Email"
+            className="border-gray-600 border-2 rounded-full px-5 py-2 text-lg"
           />
           <input
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             required
-            className="outline-none text-center bg-transparent border-2 border-emerald-600 text-sm rounded-full placeholder:text-gray-400 mt-3 py-3 px-10"
             type="password"
-            placeholder="Enter Password"
+            placeholder="Password"
+            className="border-gray-600 border-2 rounded-full px-5 py-2 text-lg"
           />
+          {/* here's some code for rememeber me and forgot password */}
+          {/* <div className='flex justify-between px-4 text-sm md:text-lg'>
+                    <label className='flex items-center cursor-pointer gap-2'>
+                    <input type='checkbox' />
+                    <span>Remember Me</span>
+                    </label>
+                    <a href='#' className='text-orange-600'>Forgot Password ?</a>
+                </div> */}
           <button
-            className="mt-7 w-52 text-white outline-none border-none bg-emerald-600 text-sm rounded-full placeholder:text-white py-3 px-5"
             type="submit"
+            className="bg-gray-600 rounded-full px-4 py-2 text-xl font-bold mt-8"
           >
-            Login
+            Log In
           </button>
         </form>
       </div>

@@ -1,16 +1,16 @@
-import React from "react";
-import Header from "../../others/Header";
-import TaskListNumber from "../../others/TaskListNumber";
-import TaskList from "../TaskList/TaskList";
+import React from 'react'
+import Header from '../Other/Header'
+import TasksNotification from '../Other/TasksNotification'
+import Tasks from '../TaskList/Tasks'
 
-const EmployeeDashboard = () => {
+const EmployeeDashboard = (props) => {
   return (
-    <div className="p-10 bg-[#1c1c1c] h-screen">
-      <Header />
-      <TaskListNumber />
-      <TaskList />
+    <div>
+        <Header changeUser={props.changeUser} data={props.data}/>
+        <TasksNotification data={props.data}/>
+        <Tasks data={props.data}/>
     </div>
-  );
-};
+  )
+}
 
-export default EmployeeDashboard;
+export default EmployeeDashboard
